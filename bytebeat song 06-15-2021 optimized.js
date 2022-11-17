@@ -93,8 +93,7 @@ function synth(vol,at,octt)
 }
 function delay(){
 	for(var i=-2; i<8; i++){
-		var j=!-1?1:2;
-		synth(i,j==1?null:64,j);
+		synth(i, i%2?null:64, 2+(i%1));
 	}
 }
 	
