@@ -36,7 +36,7 @@ function main(){
 
 	l =  (sin(q*( notetbl[ scale[ ((q/2)%16)>8?phrase[0+(((q/4)%16)>8)][int((q*3)%16)]:randl ]+keyChange ]/2 )*8)<0.1) *ramp[1];
 	r =  (sin(q*( notetbl[ scale[ ((q/2)%16)>8?phrase[2+(((q/4)%16)>8)][int((q*6)%16)]:randr ]+keyChange ]/2 )*8)<0.8) *ramp[2];
-	return [samples+l+ch+127,samples+r+ch+127];
+	return [samples+l+(r/1.7)+ch+127,samples+r+(l/1.7)+ch+127];
 }
 function noteTable(){
 	for(i=0;i<16;i++) {
