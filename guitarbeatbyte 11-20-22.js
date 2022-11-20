@@ -16,8 +16,9 @@ function main(){
 	if((((q*4)%8)==0) || (((q*4)%15)==0)) ramp[0]=8; ramp[0]-=3/sr;
 	if(((q*32)%8)==0) ramp[1]=13; ramp[1] -=30/sr;
 	if(((q*16)%8)==0) ramp[2]=13; ramp[2] -=15/sr;
-	if(((q*16)%8)==0) ramp[3]=64; ramp[3] -=640/sr;
+	if(((q*16)%16)==0) ramp[3]=64; ramp[3] -=640/sr;
 	if(((q*32)%8)==0) ramp[4]=13; ramp[4] -=200/sr;
+	if(((((t+(sr/2))/sr)*16)%16)==0) ramp[5]=20; ramp[5] -=100/sr;
 	for(i=0;i<20;i++)if(ramp[i]<=0) ramp[i]=0;
 	
 	//f sharp minor scale
@@ -28,7 +29,8 @@ function main(){
 	ch &= sin(q*( notetbl[ scale[ ((int(q*1)%8)<4)+6 ]+keyChange	] *4))*ramp[0];
 	ch*=(sin(q*32)*.4)+.8;
 	
-	ch+= sin(q*440) *ramp[3];
+	ch+= sin(q*440)*ramp[3];
+	ch+= (sin(q*880)*ramp[5])^sampler(hat,q,20,ramp[5]);
 	
 	samples = sampler(hat,q,110,ramp[4]);
 
